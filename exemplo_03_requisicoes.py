@@ -70,7 +70,7 @@ def cadastrar_categoria():
     else:
         print("Não foi possível cadastrar a categoria")
 
-
+    
 def apagar_categoria():
     id = int(questionary.text("Digite o código da categoria para apagar: ").ask())
     url = f"{url_base}/api/v1/biblioteca/categorias/{id}"
