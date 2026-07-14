@@ -77,6 +77,55 @@ def exercicio_06():
         print("\n")
         i += 1
 
+def exercicio_07():
+    apresentar_nomes: str = input("Deseja saber os nomes dos produto: (Y/N)")
+    obter_ou_não_nomes: bool = False
+    if apresentar_nomes == "Y":
+        obter_ou_não_nomes == True
+        return obter_nomes_produtos()
+    else: 
+        obter_ou_não_nomes == False
+
+
+def obter_nomes_produtos():
+    produtos = [
+        {
+            "nome_produto": "Notebook Dell Inspiron 15",
+            "categoria": "Eletrônicos",
+            "ano_fabricacao": 2024,
+            "preco": 4599.90
+        },
+        {
+            "nome_produto": "Smartphone Samsung Galaxy A56",
+            "categoria": "Eletrônicos",
+            "ano_fabricacao": 2025,
+            "preco": 2199.90
+        },
+        {
+            "nome_produto": "Cafeteira Elétrica Mondial",
+            "categoria": "Eletrodomésticos",
+            "ano_fabricacao": 2023,
+            "preco": 299.90
+        },
+        {
+            "nome_produto": "Bicicleta Aro 29 Caloi",
+            "categoria": "Esportes",
+            "ano_fabricacao": 2024,
+            "preco": 1899.90
+        },
+        {
+            "nome_produto": "Sofá Retrátil 3 Lugares",
+            "categoria": "Móveis",
+            "ano_fabricacao": 2024,
+            "preco": 2599.90
+        }
+    ]
+
+    for produto in produtos:
+        print(produto["nome_produto"])
+
+exercicio_07()
+
 
 
 
