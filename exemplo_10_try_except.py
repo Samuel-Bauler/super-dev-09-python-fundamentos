@@ -24,7 +24,30 @@ def exemplo_com_tratamento_conversao():
         # print("Não foi possível converter o número para inteiro")
     print("Acabou")
 
+
+def exemplo_com_multiplos_tratamentos():
+    numero1_digitado = "28"
+    numero2_digitado = "9"
+
+    try:
+        resultado: int = int(numero1_digitado) / int(numero2_digitado)
+        print("Resultado: ", resultado)
+    except ZeroDivisionError:
+        print("Erro: Não é possivel dividir por zero")
+    except ValueError:
+        print("Erro: os valores precisam ser numeros")
+
+    print("Obrigado por utilizar nosso sistema")    
+
+
+def exemplo_mensagem_erro():
+    try:
+        aluno = {"nome": "pedro", "nota1": 9.75}
+        media_aluno = aluno["media"]
+        print(media_aluno)
+    except KeyError as erro: # 'as' serve para pegar a variavel do erro que ocorreu
+        print("Mensagem de erro tentar acessar a chave: " , erro)
 # Ponto de  entrada da aplicação, deve ter um único da aplicação inteira
 if __name__ == "__main__":
-    exemplo_com_tratamento_conversao()
+    exemplo_mensagem_erro()
     
