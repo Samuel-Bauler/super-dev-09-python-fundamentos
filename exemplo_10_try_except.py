@@ -47,6 +47,8 @@ def exemplo_mensagem_erro():
         print(media_aluno)
     except KeyError as erro: # 'as' serve para pegar a variavel do erro que ocorreu
         print("Mensagem de erro tentar acessar a chave: " , erro)
+
+        
 # Ponto de  entrada da aplicação, deve ter um único da aplicação inteira
 if __name__ == "__main__":
     exemplo_mensagem_erro()
