@@ -18,5 +18,5 @@ def exemplo_com_erro():
         print("FINALLY: executei mesmo com erro" )
 
 if __name__ == "__main__":
-    exemplo_sem_erro()
+    exemplo_com_erro()
     # exemplo_com_erro()

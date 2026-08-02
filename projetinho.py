@@ -4,17 +4,17 @@
 import cv2
 import numpy as np
 import tkinter as tk
-from tkinter import messagebox
+
+contador = 0
+
 
 def perguntar_saida(contador):
-
     resposta = False
 
     janela = tk.Toplevel()
     janela.title("Contagem finalizada")
-    janela.geometry("400x220")
+    janela.geometry("400x300")
     janela.resizable(False, False)
-
 
     texto = tk.Label(
         janela,
@@ -22,14 +22,12 @@ def perguntar_saida(contador):
         font=("Arial", 16),
         justify="center"
     )
-
     texto.pack(pady=30)
 
     def sair():
         nonlocal resposta
         resposta = True
         janela.destroy()
-
 
     botao_sair = tk.Button(
         janela,
@@ -38,29 +36,22 @@ def perguntar_saida(contador):
         width=10,
         command=sair
     )
-
-    botao_sair.pack(
-        side="left",
-        padx=70
-    )
-
+    botao_sair.pack(pady=10)
 
     janela.wait_window()
 
     return resposta
 
-limite_tiaras = int(input("Digite a quantidade de tiaras que você deseja contabilizar: "))
-
-camera = cv2.VideoCapture(0)
-
-contador = 0
-objeto_visivel = False
-frames_sem_objeto = 0
-
 
 root = tk.Tk()
 root.withdraw()
 
+camera = cv2.VideoCapture(0)
+
+limite_tiaras = int(input("Digite a quantidade de tiaras a ser contabilizadas: "))
+
+objeto_visivel = False
+frames_sem_objeto = 0
 
 while True:
 
@@ -104,7 +95,7 @@ while True:
 
     for contorno in contornos:
 
-        if cv2.contourArea(contorno) > 5000:
+        if cv2.contourArea(contorno) > 2000:
 
             objeto_detectado = True
 
@@ -125,8 +116,20 @@ while True:
             contador += 1
             objeto_visivel = True
 
+            cv2.putText(
+                frame,
+                f"Tiaras contabilizadas: {contador}",
+                (20, 40),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1,
+                (255, 255, 0),
+                2
+            )
+
+            cv2.imshow("Camera", frame)
+            cv2.waitKey(1)
+
             if contador >= limite_tiaras:
-                camera.release()
 
                 sair = perguntar_saida(contador)
 
@@ -154,12 +157,12 @@ while True:
         2
     )
 
-    cv2.imshow(
-        "Camera",
-        frame
-    )
+    cv2.imshow("Camera", frame)
 
-    if cv2.waitKey(1) == 27:
+    # cv2.imshow("Mascara", mascara)
+
+    if cv2.waitKey(1) & 0xFF == 27:
         break
 
 camera.release()
+cv2.destroyAllWindows()

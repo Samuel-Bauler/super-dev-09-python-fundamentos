@@ -53,4 +53,4 @@ def exemplo_tipos_erros():
     except SaldoInsuficienteError as erro:
         print("Erro: " , erro)
 
-exemplo_tipos_erros()
+validar_idade(-1)
