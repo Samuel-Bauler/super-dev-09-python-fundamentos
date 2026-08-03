@@ -129,23 +129,22 @@ while True:
             cv2.imshow("Camera", frame)
             cv2.waitKey(1)
 
-            if contador >= limite_tiaras:
-
-                sair = perguntar_saida(contador)
-
-                if sair:
-                    break
-
-                else:
-                    contador = 0
-                    objeto_visivel = False
-                    frames_sem_objeto = 0
-
     else:
         frames_sem_objeto += 1
 
         if frames_sem_objeto >= 15:
             objeto_visivel = False
+
+    if contador >= limite_tiaras:
+        sair = perguntar_saida(contador)
+
+        if sair:
+            break
+
+        else:
+            contador = 0
+            objeto_visivel = False
+            frames_sem_objeto = 0
 
     cv2.putText(
         frame,
