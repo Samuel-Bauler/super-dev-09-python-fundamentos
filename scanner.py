@@ -46,12 +46,13 @@ def perguntar_saida(contador):
 root = tk.Tk()
 root.withdraw()
 
-camera = cv2.VideoCapture(0)
-
 limite_tiaras = int(input("Digite a quantidade de tiaras a ser contabilizadas: "))
-
+camera = cv2.VideoCapture(0)
 objeto_visivel = False
 frames_sem_objeto = 0
+
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1200)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 800)
 
 while True:
 
@@ -109,7 +110,7 @@ while True:
                 2
             )
 
-    if objeto_detectado:
+    if objeto_detectado == True:
         frames_sem_objeto = 0
 
         if not objeto_visivel:
@@ -119,10 +120,10 @@ while True:
             cv2.putText(
                 frame,
                 f"Tiaras contabilizadas: {contador}",
-                (20, 40),
+                (40, 40),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 1,
-                (255, 255, 0),
+                (0, 0, 0),
                 2
             )
 
@@ -136,6 +137,7 @@ while True:
             objeto_visivel = False
 
     if contador >= limite_tiaras:
+
         sair = perguntar_saida(contador)
 
         if sair:
@@ -149,16 +151,16 @@ while True:
     cv2.putText(
         frame,
         f"Tiaras contabilizadas: {contador}",
-        (20, 40),
+        (40, 40),
         cv2.FONT_HERSHEY_SIMPLEX,
-        1,
-        (255, 255, 0),
+        1.3,
+        (0, 0, 0),
         2
     )
 
     cv2.imshow("Camera", frame)
 
-    # cv2.imshow("Mascara", mascara)
+    cv2.imshow("Mascara", mascara)
 
     if cv2.waitKey(1) & 0xFF == 27:
         break
